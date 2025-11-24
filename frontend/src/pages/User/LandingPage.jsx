@@ -25,48 +25,80 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="landing-page" style={{minHeight: '100vh', display: 'flex', flexDirection: 'column'}}>
+    <div className="landing-page">
+      {/* Hero Section */}
       <header className="landing-hero">
-        <div className="hero-inner app-container">
+        <div className="hero-inner">
           <div className="hero-left">
             <img src="/logo.png" alt="Aurevra" className="landing-logo" />
-            <h1>Timeless Jewelry, Modern Minimalism</h1>
-            <p className="muted">Handcrafted pieces for everyday elegance. Shop curated designs made to last.</p>
-            <div style={{marginTop:18}}>
-              <Link to="/shop" className="btn btn-primary">Shop Collection</Link>
-              <Link to="/user/register" className="btn btn-ghost" style={{marginLeft:8}}>Create Account</Link>
+            <h1>DISCOVER TIMELESS ELEGANCE</h1>
+            <p className="muted">
+              Handcrafted jewelry pieces that celebrate individuality and craftsmanship. 
+              Explore our curated collection of timeless designs.
+            </p>
+            <div style={{ marginTop: 24, display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <Link to="/shop" className="btn btn-primary">
+                Shop Collection
+              </Link>
+              <Link to="/user/register" className="btn btn-ghost">
+                Create Account
+              </Link>
             </div>
           </div>
 
           <div className="hero-right">
             <div className="card">
               <div className="card-media">
-                <img src={getFallbackImage('banner')} alt="Spotlight" />
+                <img 
+                  src={getFallbackImage('banner')} 
+                  alt="Elegant jewelry showcase" 
+                  loading="eager"
+                />
               </div>
             </div>
           </div>
         </div>
       </header>
 
+      {/* Featured Section */}
       <section className="featured-section">
-        <h2>Featured</h2>
+        <h2>Featured Collection</h2>
         {loading ? (
-          <p>Loading...</p>
+          <div style={{ textAlign: 'center', padding: '40px', color: '#888' }}>
+            <p>Loading featured products...</p>
+          </div>
         ) : featured.length === 0 ? (
-          <p>No featured items yet.</p>
+          <div style={{ textAlign: 'center', padding: '40px', color: '#888' }}>
+            <p>No featured items available yet.</p>
+            <Link to="/shop" className="btn btn-primary" style={{ marginTop: 20 }}>
+              Browse All Products
+            </Link>
+          </div>
         ) : (
           <div className="featured-list">
             {featured.map(p => (
               <div key={p._id} className="featured-card">
-                <img src={p.image || getFallbackImage(p.name)} alt={p.name} loading="lazy" />
+                <img 
+                  src={p.image || getFallbackImage(p.name)} 
+                  alt={p.name} 
+                  loading="lazy" 
+                />
                 <h3>{p.name}</h3>
-                <div className="price">₱{(p.price || 0).toLocaleString()}</div>
-                <Link to={`/product/${p._id}`} className="btn btn-ghost" style={{marginTop:'auto', width:'100%'}}>View</Link>
+                <div className="price">
+                  ₱{(p.price || 0).toLocaleString('en-PH')}
+                </div>
+                <Link 
+                  to={`/product/${p._id}`} 
+                  className="btn btn-ghost"
+                >
+                  View Details
+                </Link>
               </div>
             ))}
           </div>
         )}
       </section>
+
       <Footer />
     </div>
   );

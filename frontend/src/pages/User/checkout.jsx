@@ -89,6 +89,16 @@ export default function Checkout() {
       0
     ) || 0;
 
+  // ✅ FIX: Prevent crash when cart = null
+  if (!cart) {
+    return (
+      <div className="app-container" style={{ paddingTop: 40 }}>
+        <h2 className="fw-bold mb-4">Checkout</h2>
+        <p>Loading your cart...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="app-container" style={{ paddingTop: 40 }}>
       <h2 className="fw-bold mb-4">Checkout</h2>

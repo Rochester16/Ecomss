@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../styles/ContactUs.css'; // Import the new CSS
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -23,9 +24,15 @@ const ContactUs = () => {
       await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API delay
       setStatus('success');
       setFormData({ name: '', email: '', message: '' }); // Clear form
+      
+      // Clear success message after 3 seconds
+      setTimeout(() => setStatus(''), 3000);
     } catch (error) {
       console.error('Submission failed:', error);
       setStatus('error');
+      
+      // Clear error message after 3 seconds
+      setTimeout(() => setStatus(''), 3000);
     }
   };
 
@@ -33,9 +40,9 @@ const ContactUs = () => {
     <div className="main-content">
       <div className="contact-section text-center">
         <div className="d-flex justify-content-center">
-            <div className="contact-logo">
-                <img src="path/to/logo-with-diamond.png" alt="Aurevra Logo" />
-            </div>
+          <div className="contact-logo">
+            <img src="/logo.png" alt="Aurevra Logo" />
+          </div>
         </div>
 
         <h2 className="contact-title">CONTACT US</h2>
@@ -48,7 +55,7 @@ const ContactUs = () => {
               placeholder="Your Name"
               value={formData.name}
               onChange={handleChange}
-              className="form-control mb-3" // Using standard Bootstrap form-control for inputs
+              className="form-control"
               required
             />
           </div>
@@ -59,14 +66,14 @@ const ContactUs = () => {
               placeholder="Your Email"
               value={formData.email}
               onChange={handleChange}
-              className="form-control mb-3"
+              className="form-control"
               required
             />
           </div>
           <div className="mb-4">
             <textarea
               name="message"
-              placeholder="Message"
+              placeholder="Your Message"
               value={formData.message}
               onChange={handleChange}
               className="form-control"
@@ -79,19 +86,34 @@ const ContactUs = () => {
             {status === 'submitting' ? 'SENDING...' : 'SUBMIT'}
           </button>
           
-          {status === 'success' && <p className="text-success mt-3">Message sent successfully!</p>}
-          {status === 'error' && <p className="text-danger mt-3">Failed to send message. Please try again.</p>}
+          {status === 'success' && (
+            <p className="text-success mt-3">✓ Message sent successfully!</p>
+          )}
+          {status === 'error' && (
+            <p className="text-danger mt-3">✗ Failed to send message. Please try again.</p>
+          )}
         </form>
 
         <div className="contact-info mt-5">
-            <p><i className="fas fa-phone"></i> 09123456789</p>
-            <p><i className="fas fa-envelope"></i> aurevrajewelry@gmail.com</p>
-            <div className="social-icons mt-3">
-              {/* Using font-awesome classes as suggested by the CSS icon selectors */}
-              <a href="#"><i className="fab fa-facebook-f"></i></a> 
-              <a href="#"><i className="fab fa-instagram"></i></a> 
-              <a href="#"><i className="fab fa-twitter"></i></a>
-            </div>
+          <p>
+            <i className="fas fa-phone"></i> 
+            09123456789
+          </p>
+          <p>
+            <i className="fas fa-envelope"></i> 
+            aurevrajewelry@gmail.com
+          </p>
+          <div className="social-icons mt-3">
+            <a href="#" aria-label="Facebook">
+              <i className="fab fa-facebook-f"></i>
+            </a> 
+            <a href="#" aria-label="Instagram">
+              <i className="fab fa-instagram"></i>
+            </a> 
+            <a href="#" aria-label="Twitter">
+              <i className="fab fa-twitter"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>

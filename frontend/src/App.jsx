@@ -17,6 +17,8 @@ import AboutUs from "./pages/User/aboutus.jsx";
 import ProductDetail from "./pages/User/ProductDetail.jsx";
 import ContactUs from "./pages/User/contact.jsx";
 import MyPurchase from "./pages/User/Purchase.jsx";
+import MyAccount from "./pages/User/MyAccount.jsx";
+import MyPurchases from "./pages/User/MyPurchases.jsx";
 
 // ADMIN PAGES
 import AddProductPage from "./pages/Admin/AddProductPage.jsx";
@@ -95,7 +97,14 @@ function Layout() {
           </UserRoute>
         }
       />
-
+ <Route
+        path="/purchases"
+        element={
+          <UserRoute>
+            <UserLayout><MyPurchases /></UserLayout>
+          </UserRoute>
+        }
+      />
       <Route
         path="/shop"
         element={
@@ -105,6 +114,14 @@ function Layout() {
         }
       />
 
+<Route
+        path="/account"
+        element={
+          <UserRoute>
+            <UserLayout><MyAccount /></UserLayout>
+          </UserRoute>
+        }
+      />
       <Route
         path="/contact"
         element={

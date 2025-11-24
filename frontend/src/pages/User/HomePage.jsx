@@ -68,7 +68,7 @@ export default function Home() {
 
             <div className="hero-cta" style={{ marginTop: 16 }}>
               <Link to="/shop" className="btn btn-primary">Shop Collection</Link>
-              <Link to="/aboutus" className="btn btn-ghost">Our Story</Link>
+              <Link to="/about" className="btn btn-ghost">Our Story</Link>
             </div>
           </div>
 
